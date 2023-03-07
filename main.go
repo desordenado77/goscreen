@@ -56,12 +56,6 @@ func InitLogs(
 		log.Ldate|log.Ltime|log.Lshortfile)
 }
 
-//func usage() {
-//	w := os.Stdout
-//
-//	getopt.PrintUsage(w)
-//}
-//
 func main() {
 
 	InitLogs(os.Stdout, os.Stdout, os.Stdout, os.Stderr)
@@ -222,19 +216,4 @@ func runPager(file string) (*exec.Cmd) {
 		os.Exit(1)
 	}
 	return cmd
-}
-
-func displayHardcopy(buf io.Writer) {
-	dat, err := os.ReadFile(TEMP_FILE)
-	if err != nil {
-		Error.Println(err)
-		os.Exit(1)
-	}
-
-	fmt.Fprintf(buf, string(dat))
-
-	err = os.Remove(TEMP_FILE)
-	if err != nil {
-		Error.Println(err)
-	}
 }
